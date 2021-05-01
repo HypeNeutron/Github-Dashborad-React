@@ -26,10 +26,10 @@ jobs:
         name: 'Checkout Source Code'
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 14.x
+#       - name: Setup Node.js environment
+#         uses: actions/setup-node@v2.1.5
+#         with:
+#           node-version: 14.x
 
       - name: Build the Site
         run: |
