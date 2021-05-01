@@ -5,7 +5,6 @@ name: Build and Deploy to Netlify
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-  pull_request:
     branches: [main]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -30,7 +29,8 @@ jobs:
 
       # Runs a yarn commands
       - name: Build Site
-        run: yarn install --production
+        run: 
+          yarn install
           yarn build
 
       # Netlify Actions
