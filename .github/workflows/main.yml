@@ -23,17 +23,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-        name: 'Checkout Sourse Code'
+        name: 'Checkout Source Code'
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
         with:
-          version: 14.x
+          node-version: 14.x
 
       - name: Build the Site
         run: |
-          yarn install --production
+          yarn install
           yarn build
 
       - name: Deploy to Netlify
