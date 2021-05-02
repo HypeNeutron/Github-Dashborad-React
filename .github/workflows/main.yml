@@ -43,14 +43,21 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
+      - name: action-github-app-token
+        id: my-app
+        uses: getsentry/action-github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 14.x
-
+          
       - name: Build the Site
         run: |
           yarn install --production
