@@ -6,6 +6,7 @@ jobs:
   # This job will:
   #   * deploy a draft every time there is a commit that is not on main branch
   #   * comment on that commit with the deploy URL
+  workflow_dispatch:
   deployCommitDraft:
     name: Deploy draft to Netlify
     runs-on: ubuntu-latest
