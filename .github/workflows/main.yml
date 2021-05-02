@@ -20,6 +20,11 @@ jobs:
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Checkout private repo
+        uses: actions/checkout@v2
+        with:
+          repository: getsentry/my-private-repo
+          token: ${{ steps.my-app.outputs.token }}
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Setup Node.js environment
@@ -59,6 +64,11 @@ jobs:
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Checkout private repo
+        uses: actions/checkout@v2
+        with:
+          repository: getsentry/my-private-repo
+          token: ${{ steps.my-app.outputs.token }}
           
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
