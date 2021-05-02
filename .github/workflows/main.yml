@@ -11,9 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref != 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v2
-        name: 'Checkout Source Code'
-
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: action-github-app-token
+        id: my-app
+        uses: getsentry/action-github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
@@ -43,6 +50,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
       - name: action-github-app-token
         id: my-app
         uses: getsentry/action-github-app-token@v1
@@ -50,9 +60,6 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
           
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
         with:
