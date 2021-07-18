@@ -4,8 +4,8 @@ import CardUser from './CardUser';
 import Followers from './Followers';
 const User = () => {
   return (
-    <section className="section">
-      <Wrapper className="section-center">
+    <section className='section'>
+      <Wrapper className='section-center'>
         <CardUser></CardUser>
         <Followers></Followers>
       </Wrapper>

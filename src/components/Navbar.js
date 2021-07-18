@@ -21,7 +21,8 @@ const Navbar = () => {
         <button
           onClick={() => {
             logout({ returnTo: window.location.origin });
-          }}>
+          }}
+        >
           logout
         </button>
       ) : (

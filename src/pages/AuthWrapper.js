@@ -7,7 +7,7 @@ function AuthWrapper({ children }) {
   if (isLoading) {
     return (
       <Wrapper>
-        <img src={loadingGif} alt="spinner" />
+        <img src={loadingGif} alt='spinner' />
       </Wrapper>
     );
   }

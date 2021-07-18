@@ -9,7 +9,7 @@ const Dashboard = () => {
       <main>
         <Navbar />
         <Search />
-        <img src={loadingImage} alt="loading" className="loading-img" />
+        <img src={loadingImage} alt='loading' className='loading-img' />
       </main>
     );
   }

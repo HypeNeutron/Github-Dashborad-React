@@ -7,16 +7,16 @@ const Followers = () => {
 
   return (
     <Wrapper>
-      <div className="followers">
+      <div className='followers'>
         {followers.map((follower, index) => {
-          const { avatar_url: img, html_url, login } = follower;
+          const { avatar_url: img, html_url: htmlURL, login } = follower;
           return (
             <article key={index}>
               <img src={img} alt={login} />
               <div>
                 <h4>{login}</h4>
-                <a href={html_url} target="_blank" rel="noopener noreferrer">
-                  {html_url}
+                <a href={htmlURL} target='_blank' rel='noopener noreferrer'>
+                  {htmlURL}
                 </a>
               </div>
             </article>

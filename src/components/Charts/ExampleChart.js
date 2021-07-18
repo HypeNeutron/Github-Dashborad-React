@@ -24,16 +24,16 @@ const ChartComponent = ({ data }) => {
     dataSource: {
       //* Chart Configuration
       chart: {
-        //*Set the chart caption
+        //* Set the chart caption
         caption: 'Countries With Most Oil Reserves [2017-18]',
-        //*Set the chart subcaption
+        //* Set the chart subcaption
         subCaption: 'In MMbbl = One Million barrels',
-        //*Set the x-axis name
+        //* Set the x-axis name
         xAxisName: 'Country',
-        //*Set the y-axis name
+        //* Set the y-axis name
         yAxisName: 'Reserves (MMbbl)',
         numberSuffix: 'K',
-        //*Set the theme for your chart
+        //* Set the theme for your chart
         theme: 'fusion',
       },
       //* Chart Data

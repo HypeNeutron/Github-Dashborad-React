@@ -7,25 +7,28 @@ const Repos = () => {
   const { repos } = React.useContext(GithubContext);
 
   const languages = repos.reduce((obj, item) => {
-    const { language, stargazers_count } = item;
-    if (!language) return obj; //not have language return {} undefined
+    const { language, stargazers_count: starCountLang } = item;
+    if (!language) return obj; // not have language return {} undefined
+    let ob = obj;
 
-    obj[language] ??
-      (obj[language] = { label: language, value: 1, stars: stargazers_count });
+    if (obj[language]) {
+      ob[language] = { label: language, value: 1, stars: starCountLang };
+    }
 
-    obj[language] = {
+    ob[language] = {
       ...obj[language],
       value: obj[language].value + 1,
-      stars: obj[language].stars + stargazers_count,
+      stars: obj[language].stars + starCountLang,
     };
-    return obj;
+    return ob[language];
   }, {});
 
-  //# most used language-------
-  const totalMostUsed = Object.values(languages).reduce(
-    (acc, item) => (acc += item.value),
-    0
-  );
+  // # most used language-------
+  const totalMostUsed = Object.values(languages).reduce((acc, item) => {
+    let accum = acc;
+    accum += item.value;
+    return accum;
+  }, 0);
 
   const mostUsed = Object.values(languages).reduce((acc, item) => {
     let percentage = (item.value / totalMostUsed) * 100;
@@ -37,7 +40,7 @@ const Repos = () => {
     .sort((a, b) => b.value - a.value)
     .slice(0, 5); // First 5 language
 
-  //# most stars per language----
+  // # most stars per language----
   const mostStars = Object.values(languages).reduce((acc, item) => {
     acc[item.label] = { label: item.label, value: item.stars };
     return acc;
@@ -48,12 +51,13 @@ const Repos = () => {
       return b.value - a.value;
     })
     .slice(0, 5); // First 5 language
-  //# stars MostPopular and Most forks 5 language ----
+
+  // # stars MostPopular and Most forks 5 language ----
   let { stars, forks } = repos.reduce(
     (acc, item) => {
-      const { stargazers_count, name, forks } = item;
-      acc.stars[stargazers_count] = { label: name, value: stargazers_count };
-      acc.forks[forks] = { label: name, value: forks };
+      const { stargazers_count: starsCount, name, forks: forker } = item;
+      acc.stars[starsCount] = { label: name, value: starsCount };
+      acc.forks[forker] = { label: name, value: forker };
       return acc;
     },
     { stars: {}, forks: {} }
@@ -63,8 +67,8 @@ const Repos = () => {
   forks = Object.values(forks).slice(-5).reverse();
 
   return (
-    <section className="section">
-      <Wrapper className="section-center">
+    <section className='section'>
+      <Wrapper className='section-center'>
         <Pie3D data={mostUsedSorted} />
         <Column3D data={stars} />
         <Doughnut2D data={mostStarsSorted} />

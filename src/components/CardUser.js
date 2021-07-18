@@ -1,34 +1,35 @@
 import React from 'react';
-import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 import { FaTwitter } from 'react-icons/fa';
+import { GithubContext } from '../context/context';
+
 const CardUser = () => {
   const { githubUser } = React.useContext(GithubContext);
   const {
-    avatar_url,
-    html_url,
+    avatar_url: avatarURL,
+    html_url: htmlURL,
     name,
     company,
     blog,
     bio,
     location,
-    twitter_username,
+    twitter_username: twitUser,
   } = githubUser;
   return (
     <Wrapper>
       <header>
-        <img src={avatar_url} alt={name} />
+        <img src={avatarURL} alt={name} />
         <div>
           <h4>{name}</h4>
-          {twitter_username && <p>@{twitter_username}</p>}
+          {twitUser && <p>@{twitUser}</p>}
         </div>
-        <a href={html_url} target="_blank" rel="noopener noreferrer">
+        <a href={htmlURL} target='_blank' rel='noopener noreferrer'>
           follow
         </a>
       </header>
-      <p className="bio">{bio}</p>
-      <div className="links">
+      <p className='bio'>{bio}</p>
+      <div className='links'>
         {company && (
           <p>
             <MdBusiness></MdBusiness> {company || 'N/A'}
@@ -40,17 +41,18 @@ const CardUser = () => {
           </p>
         )}
         {blog && (
-          <a href={`https://${blog}`} target="_blank" rel="noopener noreferrer">
+          <a href={`https://${blog}`} target='_blank' rel='noopener noreferrer'>
             <MdLink></MdLink>
             {blog}
           </a>
         )}
-        {twitter_username && (
+        {twitUser && (
           <a
-            href={`https://twitter.com/${twitter_username}`}
-            target="_blank"
-            rel="noopener noreferrer">
-            <FaTwitter></FaTwitter>@{twitter_username}
+            href={`https://twitter.com/${twitUser}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaTwitter></FaTwitter>@{twitUser}
           </a>
         )}
       </div>
