@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useCallback } from 'react';
 import mockUser from './mockData.js/mockUser';
 import mockRepos from './mockData.js/mockRepos';
 import mockFollowers from './mockData.js/mockFollowers';
+import axios from 'axios';
 
-const rootUrl = 'https://api.github.com/';
+const rootUrl = 'https://api.github.com';
 
 const GithubContext = React.createContext();
 
@@ -23,38 +23,9 @@ const GithubProvider = ({ children }) => {
     setError({ show, msg });
   }
 
-  //* Search User
-  const searchGithubUser = async (user) => {
-    toggleError();
-    setIsLoading(true);
-    const res = await axios(`${rootUrl}users/${user}`).catch((err) =>
-      console.error(err)
-    );
-    if (res) {
-      setGithubUser(res.data);
-      const { login, followers_url: followerURL } = res.data;
-      const repos100 = axios(`${rootUrl}users/${login}/repos?per_page=100`);
-      const follower100 = axios(`${followerURL}?per_page=100`);
-
-      await Promise.allSettled([repos100, follower100]).then((result) => {
-        const [repos, follower] = result;
-        const status = 'fulfilled';
-        if (repos.status === status) return setRepoState(repos.value.data);
-        if (follower.status === status)
-          return setFollowerState(follower.value.data);
-        throw new Error();
-      });
-
-      setIsLoading(false);
-    } else {
-      toggleError(true, 'there is no user with that username');
-      setIsLoading(false);
-    }
-  };
-
-  //* check rate
-  const checkRequests = () => {
-    axios(`${rootUrl}rate_limit`)
+  //* Check rate request
+  const checkRequests = useCallback(() => {
+    axios(`${rootUrl}/rate_limit`)
       .then(({ data }) => {
         const {
           rate: { remaining },
@@ -65,19 +36,70 @@ const GithubProvider = ({ children }) => {
           toggleError(true, 'sorry you have exceeded your hourly rate limit!');
         }
       })
-      .catch((err) => console.error(err));
-  };
+      .catch((err) => toggleError(true, `${err}`));
+  }, []);
 
-  useEffect(checkRequests, []);
+  //* Search User
+  const searchGithubUser = useCallback(
+    async (user) => {
+      toggleError();
+      setIsLoading(true);
+
+      const res = await axios(`${rootUrl}/users/${user}`).catch((err) => {
+        toggleError(true, `${err}`);
+        setIsLoading(false);
+      });
+
+      if (res) {
+        setGithubUser(res.data);
+        const { login, followers_url: followerURL } = res.data;
+        const repos100 = axios(`${rootUrl}/users/${login}/repos?per_page=100`);
+        const follower100 = axios(`${followerURL}?per_page=100`);
+
+        await Promise.allSettled([repos100, follower100])
+          .then((results) => {
+            const [repos, followers] = results;
+            let status = 'fulfilled';
+
+            if (repos.status === status && repos.value.data) {
+              setRepoState(repos.value.data);
+            } else {
+              setRepoState([]);
+            }
+
+            if (followers.status === status && followers.value.data) {
+              setFollowerState(followers.value.data);
+            } else {
+              setFollowerState([]);
+            }
+          })
+          .catch((err) => toggleError(true, `${err}`));
+      } else {
+        toggleError(true, 'there is no user with that username');
+        setIsLoading(false);
+      }
+      checkRequests();
+      setIsLoading(false);
+    },
+    [checkRequests]
+  );
+
+  useEffect(checkRequests, [checkRequests]);
+
+  // get initial user
+  // useEffect(() => {
+  //   searchGithubUser('HypeNeutron');
+  // }, [searchGithubUser]);
+
   return (
     <GithubContext.Provider
       value={{
         githubUser,
         repoState,
         followerState,
+        searchGithubUser,
         requests,
         error,
-        searchGithubUser,
         isLoading,
       }}
     >

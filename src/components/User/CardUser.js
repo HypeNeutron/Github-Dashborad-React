@@ -1,8 +1,8 @@
 import React from 'react';
+import { GithubContext } from '../../context/context';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 import { FaTwitter } from 'react-icons/fa';
-import { GithubContext } from '../context/context';
 
 const CardUser = () => {
   const { githubUser } = React.useContext(GithubContext);
@@ -17,19 +17,19 @@ const CardUser = () => {
     twitter_username: twitUser,
   } = githubUser;
   return (
-    <Wrapper>
+    <Article>
       <header>
         <img src={avatarURL} alt={name} />
         <div>
           <h4>{name}</h4>
           {twitUser && <p>@{twitUser}</p>}
         </div>
-        <a href={htmlURL} target='_blank' rel='noopener noreferrer'>
+        <a href={htmlURL} target="_blank" rel="noopener noreferrer">
           follow
         </a>
       </header>
-      <p className='bio'>{bio}</p>
-      <div className='links'>
+      <p className="bio">{bio}</p>
+      <div className="links">
         {company && (
           <p>
             <MdBusiness></MdBusiness> {company || 'N/A'}
@@ -41,7 +41,7 @@ const CardUser = () => {
           </p>
         )}
         {blog && (
-          <a href={`https://${blog}`} target='_blank' rel='noopener noreferrer'>
+          <a href={`https://${blog}`} target="_blank" rel="noopener noreferrer">
             <MdLink></MdLink>
             {blog}
           </a>
@@ -49,18 +49,18 @@ const CardUser = () => {
         {twitUser && (
           <a
             href={`https://twitter.com/${twitUser}`}
-            target='_blank'
-            rel='noopener noreferrer'
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <FaTwitter></FaTwitter>@{twitUser}
           </a>
         )}
       </div>
-    </Wrapper>
+    </Article>
   );
 };
 
-const Wrapper = styled.article`
+const Article = styled.article`
   background: var(--clr-white);
   padding: 1.5rem 2rem;
   border-top-right-radius: var(--radius);

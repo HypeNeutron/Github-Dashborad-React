@@ -6,14 +6,42 @@ const Navbar = () => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   const isUser = isAuthenticated && user;
+  const validPicture = isUser && user.picture;
+  const validProfileName = isUser && user.name;
+
+  if (validPicture) {
+    localStorage.setItem('picProfile', user.picture);
+  }
+
+  if (validProfileName) {
+    localStorage.setItem('nameProfile', user.name);
+  }
+
+  const getPicture = () => {
+    let pic = user.picture;
+    if (localStorage.getItem('picProfile')) {
+      pic = localStorage.getItem('picProfile');
+    }
+    return pic;
+  };
+
+  const getNameProfile = () => {
+    let name = user.name;
+    if (localStorage.getItem('nameProfile')) {
+      name = localStorage.getItem('nameProfile');
+    }
+    return name;
+  };
 
   return (
-    <Wrapper>
-      {isUser && user.picture && <img src={user.picture} alt={user.name} />}
+    <Nav>
+      {isUser && user.picture && (
+        <img src={getPicture()} alt={getNameProfile} />
+      )}
 
       {isUser && user.name && (
         <h4>
-          Welcome, <strong>{user.name.toUpperCase()}</strong>
+          Welcome, <strong>{getNameProfile().toUpperCase()}</strong>
         </h4>
       )}
 
@@ -28,11 +56,11 @@ const Navbar = () => {
       ) : (
         <button onClick={loginWithRedirect}>login</button>
       )}
-    </Wrapper>
+    </Nav>
   );
 };
 
-const Wrapper = styled.nav`
+const Nav = styled.nav`
   padding: 1.5rem;
   margin-bottom: 4rem;
   background: var(--clr-white);

@@ -12,31 +12,32 @@ const UserInfo = () => {
     following,
     public_gists: pbGist,
   } = githubUser;
+
   const items = [
     {
       id: 1,
-      icon: <GoRepo className='icon' />,
+      icon: <GoRepo className="icon" />,
       label: 'repos',
       value: pbRepo,
       color: 'pink',
     },
     {
       id: 2,
-      icon: <FiUsers className='icon' />,
+      icon: <FiUsers className="icon" />,
       label: 'followers',
       value: followers,
       color: 'green',
     },
     {
       id: 3,
-      icon: <FiUserPlus className='icon' />,
+      icon: <FiUserPlus className="icon" />,
       label: 'following',
       value: following,
       color: 'purple',
     },
     {
       id: 4,
-      icon: <GoGist className='icon' />,
+      icon: <GoGist className="icon" />,
       label: 'gists',
       value: pbGist,
       color: 'yellow',
@@ -44,8 +45,8 @@ const UserInfo = () => {
   ];
 
   return (
-    <section className='section'>
-      <Wrapper className='section-center'>
+    <section className="section">
+      <Wrapper className="section-center">
         {items.map((item) => {
           return <Item key={item.id} {...item}></Item>;
         })}
@@ -56,7 +57,7 @@ const UserInfo = () => {
 
 const Item = ({ icon, label, value, color }) => {
   return (
-    <article className='item'>
+    <article className="item">
       <span className={color}>{icon}</span>
       <div>
         <h3>{value}</h3>

@@ -1,5 +1,5 @@
 import Info from './Info';
-import Repos from './Repos';
+import Repos from './ReposData';
 import User from './User';
 import Search from './Search';
 import Navbar from './Navbar';

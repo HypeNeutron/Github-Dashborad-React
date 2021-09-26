@@ -1,27 +1,30 @@
 import React from 'react';
-import { GithubContext } from '../context/context';
+import { GithubContext } from '../../context/context';
 import styled from 'styled-components';
 
 const Followers = () => {
-  const { followers } = React.useContext(GithubContext);
-
+  const { followerState } = React.useContext(GithubContext);
   return (
     <Wrapper>
-      <div className='followers'>
-        {followers.map((follower, index) => {
-          const { avatar_url: img, html_url: htmlURL, login } = follower;
-          return (
-            <article key={index}>
-              <img src={img} alt={login} />
-              <div>
-                <h4>{login}</h4>
-                <a href={htmlURL} target='_blank' rel='noopener noreferrer'>
-                  {htmlURL}
-                </a>
-              </div>
-            </article>
-          );
-        })}
+      <div className="followers">
+        {followerState.length === 0 ? (
+          <article className="empty">No Follower</article>
+        ) : (
+          followerState.map((follower, index) => {
+            const { avatar_url: img, html_url: htmlURL, login } = follower;
+            return (
+              <article key={index} className="follower">
+                <img src={img} alt={login} />
+                <div>
+                  <h4>{login}</h4>
+                  <a href={htmlURL} target="_blank" rel="noopener noreferrer">
+                    {htmlURL}
+                  </a>
+                </div>
+              </article>
+            );
+          })
+        )}
       </div>
     </Wrapper>
   );
@@ -59,7 +62,14 @@ const Wrapper = styled.article`
     padding: 1rem 2rem;
   }
 
-  article {
+  article.empty {
+    display: grid;
+    color: var(--clr-grey-5);
+    height: 200px;
+    place-items: center;
+  }
+
+  article.follower {
     display: grid;
     grid-template-columns: auto 1fr;
     column-gap: 1rem;

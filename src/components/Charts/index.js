@@ -1,7 +1,7 @@
-import ExampleChart from './ExampleChart';
-import Column3D from './Column3D';
-import Bar3D from './Bar3D';
-import Pie3D from './Pie3D';
-import Doughnut2D from './Doughnut2d';
+import TestChart from './TestChart';
+import MostPopularStars from './MostPopularStars';
+import MostForked from './MostForked';
+import LanguagesUsed from './LanguagesUsed';
+import StarsPerLang from './StarsPerLang';
 
-export { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D };
+export { TestChart, LanguagesUsed, MostPopularStars, MostForked, StarsPerLang };

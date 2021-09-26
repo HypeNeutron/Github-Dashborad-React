@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import CardUser from './CardUser';
-import Followers from './Followers';
+import CardUser from './User/CardUser';
+import Followers from './User/Followers';
 const User = () => {
   return (
-    <section className='section'>
-      <Wrapper className='section-center'>
+    <section className="section">
+      <Wrapper className="section-center">
         <CardUser></CardUser>
         <Followers></Followers>
       </Wrapper>
