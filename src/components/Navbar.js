@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Navbar = () => {
+function Navbar() {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   const isUser = isAuthenticated && user;
@@ -58,7 +58,7 @@ const Navbar = () => {
       )}
     </Nav>
   );
-};
+}
 
 const Nav = styled.nav`
   padding: 1.5rem;

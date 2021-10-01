@@ -1,7 +1,7 @@
-import Info from './Info';
-import Repos from './ReposData';
-import User from './User';
-import Search from './Search';
+import ReposIconInfo from './ReposIconInfo';
+import ChartReposData from './ChartReposData';
+import CardUser from './UserInfo/CardUser';
+import Searchbar from './Searchbar';
 import Navbar from './Navbar';
 
-export { Info, Repos, User, Search, Navbar };
+export { ReposIconInfo, ChartReposData, CardUser, Searchbar, Navbar };

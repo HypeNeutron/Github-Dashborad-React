@@ -8,7 +8,7 @@ import {
   StarsPerLang,
 } from './Charts';
 
-const Repos = () => {
+function ChartReposData() {
   const { repoState } = React.useContext(GithubContext);
 
   // # collect amount of language used and stars in it-------------------------
@@ -79,8 +79,8 @@ const Repos = () => {
   forks = Object.values(forks).slice(-6).reverse();
 
   return (
-    <section className="section">
-      <Wrapper className="section-center">
+    <section className='section'>
+      <Wrapper className='section-center'>
         <LanguagesUsed data={mostUsedSorted} />
         <MostPopularStars data={stars} />
         <StarsPerLang data={mostStarsPerLangSorted} />
@@ -88,7 +88,7 @@ const Repos = () => {
       </Wrapper>
     </section>
   );
-};
+}
 
 const Wrapper = styled.div`
   display: grid;
@@ -114,4 +114,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default Repos;
+export default ChartReposData;

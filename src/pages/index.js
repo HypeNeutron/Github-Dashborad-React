@@ -1,7 +1,7 @@
+import Home from './Home';
 import Dashboard from './Dashboard';
-import Login from './Login';
+import Error from './Error';
 import AuthWrapper from './AuthWrapper';
 import PrivateRoute from './PrivateRoute';
-import Error from './Error';
 
-export { Dashboard, Login, AuthWrapper, PrivateRoute, Error };
+export { Dashboard, Home, AuthWrapper, PrivateRoute, Error };

@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import loginImg from '../images/Github-Logo.png';
 
-const Login = () => {
+function Home() {
   const { loginWithRedirect } = useAuth0();
 
   return (
@@ -17,7 +17,7 @@ const Login = () => {
       </div>
     </Wrapper>
   );
-};
+}
 
 const Wrapper = styled.section`
   min-height: 100vh;
@@ -36,4 +36,4 @@ const Wrapper = styled.section`
     margin-bottom: 1.5rem;
   }
 `;
-export default Login;
+export default Home;

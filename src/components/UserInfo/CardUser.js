@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import CardUser from './User/CardUser';
-import Followers from './User/Followers';
-const User = () => {
+import UserInfo from './UserInfo';
+import UserFollowers from './UserFollowers';
+
+function CardUser() {
   return (
-    <section className="section">
-      <Wrapper className="section-center">
-        <CardUser></CardUser>
-        <Followers></Followers>
+    <section className='section'>
+      <Wrapper className='section-center'>
+        <UserInfo></UserInfo>
+        <UserFollowers></UserFollowers>
       </Wrapper>
     </section>
   );
-};
+}
 
 const Wrapper = styled.div`
   padding-top: 2rem;
@@ -23,4 +24,4 @@ const Wrapper = styled.div`
   /* align-items: start; */
 `;
 
-export default User;
+export default CardUser;

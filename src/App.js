@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages';
+import { Dashboard, Home, PrivateRoute, AuthWrapper, Error } from './pages';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -7,12 +7,12 @@ function App() {
     <AuthWrapper>
       <Router>
         <Switch>
-          <PrivateRoute exact={true} path='/'>
-            <Dashboard></Dashboard>
-          </PrivateRoute>
-          <Route path='/login'>
-            <Login />
+          <Route exact path='/'>
+            <Home />
           </Route>
+          <PrivateRoute exact path='/dashboard'>
+            <Dashboard />
+          </PrivateRoute>
           <Route path='*'>
             <Error />
           </Route>

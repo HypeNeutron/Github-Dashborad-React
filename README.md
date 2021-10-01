@@ -1,48 +1,62 @@
-# Starter Project
+# Project Github Dashboard
 
-- css provided (global styles, styled components)
-- folders/files already setup
-- all imports included (warnings)
-- index.js for easier imports
+## Main Usage
+
+### - data api extract to graphic and charts component
+
+### - Authentication by Auth0 third party: @auth0/auth0-react
+
+### - Icons by react-icons
+
+### - charts by react-fusioncharts (fusioncharts)
+
+### - styling by styled-components
+
+### - deployment by netlify
+
+---
+
+## More Information >>
+
+## Deployment Netlify
+
+[Deployment Netlify](https://www.netlify.com/)
+
+---
+
+## Redirects with react-router-dom
+
+In order for routing to work on netlify, redirects was added to the public folder
+
+> ### Build  _redirects file in /public folder
+
+```jsonc
+
+/*    /index.html   200
+
+```
+
+---
+
+## Warnings and create-react-app
+
+> ### package.json
+
+```js
+"build": "CI= react-scripts build",
+```
 
 ## Styled Components
 
 [Styled-Components - Main Docs](https://styled-components.com/)
 
-```jsx
-import styled from "styled-components";
-
-const ReactComponent = () => {
- // logic here
- return <Wrapper>
- {some content}
- </Wrapper>
-}
-
-
-const Wrapper = styled.htmlElement`
-write your styles here
-`
-export default ReactComponent
-```
-
 ## React Icons
 
 [React Icons - Main Docs](https://react-icons.github.io/react-icons/)
 
-```jsx
-import { FiUsers, FiUserPlus } from 'react-icons/fi';
-<FiUsers className='nameOfTheClass'> </FiUsers>;
-```
-
 ## React Router Dom
 
-version used - "react-router-dom": "^5.2.0",
-
 - [react-router-dom - Main Docs](https://reactrouter.com/web/guides/quick-start)
-
-- `<Switch>` renders the first child `<Route>` that matches
-- A `<Route path="*">` always matches
 
 ## GitHub API
 
@@ -54,8 +68,10 @@ version used - "react-router-dom": "^5.2.0",
 - [Followers:    https://api.github.com/users/wesbos/followers](https://api.github.com/users/wesbos/followers)
 - [Rate Limit:   https://api.github.com/rate_limit](https://api.github.com/rate_limit)
 
-> For unauthenticated requests, the rate limit allows for up to 60 requests per hour. Unauthenticated requests are associated with the originating IP address, and not the user making requests.
-----
+> For unauthenticated requests, the rate limit allows for up to 60 requests per hour with the originating IP address
+
+---
+
 > When using the built-in GITHUB_TOKEN in GitHub Actions, the rate limit is 1,000 requests per hour per repository. For organizations that belong to a GitHub Enterprise Cloud account, this limit is 15,000 requests per hour per repository.
 
 ## Fusion Charts
@@ -65,53 +81,15 @@ version used - "react-router-dom": "^5.2.0",
 - [List Of Charts](https://www.fusioncharts.com/dev/chart-guide/list-of-charts)
 - [Themes](https://www.fusioncharts.com/dev/themes/introduction-to-themes)
 
-## Auth0
+## Auth0 Authentication
 
-- [Auth0 - Main Docs](https://auth0.com/)
-
-- Create Application
-- Choose : Single Page Web Applications
-- Choose : React
-- Go to Settings Tab
+- [Auth0 Authentication](https://auth0.com/)
+- [React Docs](https://auth0.com/docs/libraries/auth0-react)
 - Copy/Paste Domain, ClientID - can be public (or use .env)
-- Add Domain - for now <http://localhost:3000> (DON'T COPY PASTE FROM URL BAR)
+- Add Domain - for now <http://localhost:3000>
   - Allowed Callback URLs
   - Allowed Logout URLs
   - Allowed Web Origins
-  - SAVE CHANGES!!!!!!!!!!!!!!!
-
+  - SAVE CHANGES
 - Connections
   email,social
-
-- [React SDK Docs](https://auth0.com/docs/libraries/auth0-react)
-- [REACT SDK API Docs](https://auth0.github.io/auth0-react/)
-
-## Deployment
-
-[Netlify](https://www.netlify.com/)
-
-## Additional Info
-
-### Redirects with react-router-dom
-
-In order for routing to work on netlify, redirects was added to the public folder
-
-- \_redirects file in public
-
-```jsonc
-
-/*    /index.html   200
-
-```
-
-[Redirects Blog Post](https://dev.to/dance2die/page-not-found-on-netlify-with-react-router-58mc)
-
-#### Warnings and create-react-app
-
-package.json
-
-```js
-"build": "CI= react-scripts build",
-```
-
-[create-react-app Warning Fix Blog Post](https://community.netlify.com/t/how-to-fix-build-failures-with-create-react-app-in-production/17752)

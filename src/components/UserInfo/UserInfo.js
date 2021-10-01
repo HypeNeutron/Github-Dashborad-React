@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 import { FaTwitter } from 'react-icons/fa';
 
-const CardUser = () => {
+function UserInfo() {
   const { githubUser } = React.useContext(GithubContext);
+
   const {
     avatar_url: avatarURL,
     html_url: htmlURL,
@@ -16,6 +17,7 @@ const CardUser = () => {
     location,
     twitter_username: twitUser,
   } = githubUser;
+
   return (
     <Article>
       <header>
@@ -24,12 +26,12 @@ const CardUser = () => {
           <h4>{name}</h4>
           {twitUser && <p>@{twitUser}</p>}
         </div>
-        <a href={htmlURL} target="_blank" rel="noopener noreferrer">
+        <a href={htmlURL} target='_blank' rel='noopener noreferrer'>
           follow
         </a>
       </header>
-      <p className="bio">{bio}</p>
-      <div className="links">
+      <p className='bio'>{bio}</p>
+      <div className='links'>
         {company && (
           <p>
             <MdBusiness></MdBusiness> {company || 'N/A'}
@@ -41,7 +43,7 @@ const CardUser = () => {
           </p>
         )}
         {blog && (
-          <a href={`https://${blog}`} target="_blank" rel="noopener noreferrer">
+          <a href={`https://${blog}`} target='_blank' rel='noopener noreferrer'>
             <MdLink></MdLink>
             {blog}
           </a>
@@ -49,8 +51,8 @@ const CardUser = () => {
         {twitUser && (
           <a
             href={`https://twitter.com/${twitUser}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            target='_blank'
+            rel='noopener noreferrer'
           >
             <FaTwitter></FaTwitter>@{twitUser}
           </a>
@@ -58,7 +60,7 @@ const CardUser = () => {
       </div>
     </Article>
   );
-};
+}
 
 const Article = styled.article`
   background: var(--clr-white);
@@ -140,4 +142,4 @@ const Article = styled.article`
     }
   }
 `;
-export default CardUser;
+export default UserInfo;
