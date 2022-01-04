@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  ReposIconInfo,
-  ChartReposData,
-  CardUser,
-  Searchbar,
   Navbar,
+  Searchbar,
+  ReposDataInfoContainer,
+  CardUser,
+  ChartSectionDatas,
 } from '../components';
 
 import loadingImage from '../images/preloader.gif';
@@ -17,7 +17,7 @@ function Dashboard() {
       <main>
         <Navbar />
         <Searchbar />
-        <img src={loadingImage} alt='loading' className='loading-img' />
+        <img src={loadingImage} alt="loading" className="loading-img" />
       </main>
     );
   }
@@ -25,9 +25,9 @@ function Dashboard() {
     <main>
       <Navbar />
       <Searchbar />
-      <ReposIconInfo />
+      <ReposDataInfoContainer />
       <CardUser />
-      <ChartReposData />
+      <ChartSectionDatas />
     </main>
   );
 }

@@ -5,10 +5,10 @@ import UserFollowers from './UserFollowers';
 
 function CardUser() {
   return (
-    <section className='section'>
-      <Wrapper className='section-center'>
-        <UserInfo></UserInfo>
-        <UserFollowers></UserFollowers>
+    <section className="section">
+      <Wrapper className="section-center">
+        <UserInfo />
+        <UserFollowers />
       </Wrapper>
     </section>
   );

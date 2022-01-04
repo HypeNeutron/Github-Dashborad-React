@@ -8,13 +8,13 @@ import {
   StarsPerLang,
 } from './Charts';
 
-function ChartReposData() {
+export default function ChartReposData() {
   const { repoState } = React.useContext(GithubContext);
 
   // # collect amount of language used and stars in it-------------------------
   const langAndStarCorrected = repoState.reduce((obj, item) => {
     const { language, stargazers_count: starCountLang } = item;
-    let insObj = obj;
+    const insObj = obj;
 
     if (!language) return insObj; // not have language return {} undefined
     // and destruction name if not have add value 1 else add value it
@@ -79,18 +79,18 @@ function ChartReposData() {
   forks = Object.values(forks).slice(-6).reverse();
 
   return (
-    <section className='section'>
-      <Wrapper className='section-center'>
+    <section className="section">
+      <ContainerStyled className="section-center">
         <LanguagesUsed data={mostUsedSorted} />
         <MostPopularStars data={stars} />
         <StarsPerLang data={mostStarsPerLangSorted} />
         <MostForked data={forks} />
-      </Wrapper>
+      </ContainerStyled>
     </section>
   );
 }
 
-const Wrapper = styled.div`
+const ContainerStyled = styled.div`
   display: grid;
   justify-items: center;
   gap: 2rem;
@@ -113,5 +113,3 @@ const Wrapper = styled.div`
     border-radius: var(--radius) !important;
   }
 `;
-
-export default ChartReposData;

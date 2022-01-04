@@ -1,23 +1,23 @@
 import React from 'react';
-import { GithubContext } from '../../context/context';
 import styled from 'styled-components';
+import { GithubContext } from '../../context/context';
 
 function UserFollowers() {
   const { followerState } = React.useContext(GithubContext);
   return (
     <Wrapper>
-      <div className='followers'>
+      <div className="followers">
         {followerState.length === 0 ? (
-          <article className='empty'>No Follower</article>
+          <article className="empty">No Follower</article>
         ) : (
-          followerState.map((follower, index) => {
+          followerState.map((follower) => {
             const { avatar_url: img, html_url: htmlURL, login } = follower;
             return (
-              <article key={index} className='follower'>
+              <article key={follower.id} className="follower">
                 <img src={img} alt={login} />
                 <div>
                   <h4>{login}</h4>
-                  <a href={htmlURL} target='_blank' rel='noopener noreferrer'>
+                  <a href={htmlURL} target="_blank" rel="noopener noreferrer">
                     {htmlURL}
                   </a>
                 </div>

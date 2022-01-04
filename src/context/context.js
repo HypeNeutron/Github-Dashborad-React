@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 import mockUser from './mockData.js/mockUser';
 import mockRepos from './mockData.js/mockRepos';
 import mockFollowers from './mockData.js/mockFollowers';
-import axios from 'axios';
 
 const rootUrl = 'https://api.github.com';
 
 const GithubContext = React.createContext();
 
-const GithubProvider = ({ children }) => {
+function GithubProvider({ children }) {
   const [githubUser, setGithubUser] = useState(mockUser);
   const [repoState, setRepoState] = useState(mockRepos);
   const [followerState, setFollowerState] = useState(mockFollowers);
@@ -59,7 +59,7 @@ const GithubProvider = ({ children }) => {
         await Promise.allSettled([repos100, follower100])
           .then((results) => {
             const [repos, followers] = results;
-            let status = 'fulfilled';
+            const status = 'fulfilled';
 
             if (repos.status === status && repos.value.data) {
               setRepoState(repos.value.data);
@@ -91,21 +91,31 @@ const GithubProvider = ({ children }) => {
   //   searchGithubUser('HypeNeutron');
   // }, [searchGithubUser]);
 
+  const valueMemo = React.useMemo(() => {
+    return {
+      githubUser,
+      repoState,
+      followerState,
+      searchGithubUser,
+      requests,
+      error,
+      isLoading,
+    };
+  }, [
+    githubUser,
+    repoState,
+    followerState,
+    searchGithubUser,
+    requests,
+    error,
+    isLoading,
+  ]);
+
   return (
-    <GithubContext.Provider
-      value={{
-        githubUser,
-        repoState,
-        followerState,
-        searchGithubUser,
-        requests,
-        error,
-        isLoading,
-      }}
-    >
+    <GithubContext.Provider value={valueMemo}>
       {children}
     </GithubContext.Provider>
   );
-};
+}
 
 export { GithubProvider, GithubContext };

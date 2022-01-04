@@ -1,8 +1,8 @@
 import React from 'react';
-import { GithubContext } from '../../context/context';
 import styled from 'styled-components';
-import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 import { FaTwitter } from 'react-icons/fa';
+import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
+import { GithubContext } from '../../context/context';
 
 function UserInfo() {
   const { githubUser } = React.useContext(GithubContext);
@@ -26,35 +26,35 @@ function UserInfo() {
           <h4>{name}</h4>
           {twitUser && <p>@{twitUser}</p>}
         </div>
-        <a href={htmlURL} target='_blank' rel='noopener noreferrer'>
+        <a href={htmlURL} target="_blank" rel="noopener noreferrer">
           follow
         </a>
       </header>
-      <p className='bio'>{bio}</p>
-      <div className='links'>
+      <p className="bio">{bio}</p>
+      <div className="links">
         {company && (
           <p>
-            <MdBusiness></MdBusiness> {company || 'N/A'}
+            <MdBusiness /> {company || 'N/A'}
           </p>
         )}
         {location && (
           <p>
-            <MdLocationOn></MdLocationOn> {location || 'N/A'}
+            <MdLocationOn /> {location || 'N/A'}
           </p>
         )}
         {blog && (
-          <a href={`https://${blog}`} target='_blank' rel='noopener noreferrer'>
-            <MdLink></MdLink>
+          <a href={`https://${blog}`} target="_blank" rel="noopener noreferrer">
+            <MdLink />
             {blog}
           </a>
         )}
         {twitUser && (
           <a
             href={`https://twitter.com/${twitUser}`}
-            target='_blank'
-            rel='noopener noreferrer'
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <FaTwitter></FaTwitter>@{twitUser}
+            <FaTwitter />@{twitUser}
           </a>
         )}
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import loadingGif from '../images/preloader.gif';
 import styled from 'styled-components';
+import loadingGif from '../../images/preloader.gif';
 
 function AuthWrapper({ children }) {
   const { isLoading, error } = useAuth0();
@@ -9,7 +9,7 @@ function AuthWrapper({ children }) {
   if (isLoading) {
     return (
       <Wrapper>
-        <img src={loadingGif} alt='spinner' />
+        <img src={loadingGif} alt="spinner" />
       </Wrapper>
     );
   }
@@ -22,7 +22,7 @@ function AuthWrapper({ children }) {
     );
   }
 
-  return <>{children}</>;
+  return children;
 }
 
 const Wrapper = styled.section`

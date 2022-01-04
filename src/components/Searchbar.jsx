@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
 import { GithubContext } from '../context/context';
 
-const Searchbar = () => {
+export default function Searchbar() {
   const [user, setUser] = React.useState('');
   //* get things from global context
   const { requests, error, searchGithubUser, isLoading } =
@@ -19,24 +19,24 @@ const Searchbar = () => {
   };
 
   return (
-    <section className='section'>
-      <Wrapper className='section-center'>
+    <section className="section">
+      <Wrapper className="section-center">
         {error.show && (
           <ErrorArticle>
             <p>{error.msg}</p>
           </ErrorArticle>
         )}
         <form onSubmit={handleSubmit}>
-          <div className='form-control'>
+          <div className="form-control">
             <MdSearch />
             <input
-              type='text'
-              placeholder='enter github user'
+              type="text"
+              placeholder="enter github user"
               value={user}
               onChange={(e) => setUser(e.target.value)}
             />
             {requests > 0 && !isLoading && (
-              <button type='submit'>search</button>
+              <button type="submit">search</button>
             )}
           </div>
         </form>
@@ -44,7 +44,7 @@ const Searchbar = () => {
       </Wrapper>
     </section>
   );
-};
+}
 
 const Wrapper = styled.div`
   position: relative;
@@ -128,5 +128,3 @@ const ErrorArticle = styled.article`
     letter-spacing: var(--spacing);
   }
 `;
-
-export default Searchbar;

@@ -2,23 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 
-function Navbar() {
+export default function Navbar() {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
+  const { picture, name } = user;
   const isUser = isAuthenticated && user;
-  const validPicture = isUser && user.picture;
-  const validProfileName = isUser && user.name;
+  const validPicture = isUser && picture;
+  const validProfileName = isUser && name;
 
   if (validPicture) {
-    localStorage.setItem('picProfile', user.picture);
+    localStorage.setItem('picProfile', picture);
   }
 
   if (validProfileName) {
-    localStorage.setItem('nameProfile', user.name);
+    localStorage.setItem('nameProfile', name);
   }
 
   const getPicture = () => {
-    let pic = user.picture;
+    let pic = picture;
     if (localStorage.getItem('picProfile')) {
       pic = localStorage.getItem('picProfile');
     }
@@ -26,11 +27,11 @@ function Navbar() {
   };
 
   const getNameProfile = () => {
-    let name = user.name;
+    let nameProfile = name;
     if (localStorage.getItem('nameProfile')) {
-      name = localStorage.getItem('nameProfile');
+      nameProfile = localStorage.getItem('nameProfile');
     }
-    return name;
+    return nameProfile;
   };
 
   return (
@@ -47,6 +48,7 @@ function Navbar() {
 
       {isUser ? (
         <button
+          type="button"
           onClick={() => {
             logout({ returnTo: window.location.origin });
           }}
@@ -54,7 +56,9 @@ function Navbar() {
           logout
         </button>
       ) : (
-        <button onClick={loginWithRedirect}>login</button>
+        <button type="submit" onClick={loginWithRedirect}>
+          login
+        </button>
       )}
     </Nav>
   );
@@ -90,5 +94,3 @@ const Nav = styled.nav`
     cursor: pointer;
   }
 `;
-
-export default Navbar;

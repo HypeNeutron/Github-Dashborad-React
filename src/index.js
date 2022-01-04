@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { GithubProvider } from './context/context';
-import { Auth0Provider } from '@auth0/auth0-react';
 
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
-      domain='dev-hype-neutron.us.auth0.com'
-      clientId='q6udkmEu4U9B6afNCdwX26YtBEXNKOmN'
+      domain="dev-hype-neutron.us.auth0.com"
+      clientId="q6udkmEu4U9B6afNCdwX26YtBEXNKOmN"
       redirectUri={window.location.origin}
-      cacheLocation='localstorage'
+      cacheLocation="localstorage"
     >
       <GithubProvider>
         <App />
