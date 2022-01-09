@@ -5,7 +5,6 @@ import loginImg from '../images/Github-Logo.png';
 
 function Home() {
   const { loginWithRedirect } = useAuth0();
-
   return (
     <Wrapper>
       <div className="container">
