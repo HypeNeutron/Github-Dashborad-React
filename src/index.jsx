@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
 // import * as serviceWorker from './serviceWorker';
 import { GithubProvider } from './context/context';
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <Auth0Provider
       domain={process.env.REACT_APP_AUTH_DOMAIN}
@@ -18,8 +19,7 @@ ReactDOM.render(
         <App />
       </GithubProvider>
     </Auth0Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
