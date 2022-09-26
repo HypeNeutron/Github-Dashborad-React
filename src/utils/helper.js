@@ -6,7 +6,6 @@ const getError = (err) => {
     message = dataRes.message;
   } else message = err.message;
 
-  if (typeof dataRes === 'string') message = dataRes; // debug only
   if ((message && message.includes(500)) || message.includes('Network Error'))
     message =
       'Something went wrong 👻 Please check your connection and try again, or contact us';

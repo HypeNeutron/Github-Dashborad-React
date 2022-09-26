@@ -36,7 +36,7 @@ function GithubProvider({ children }) {
         if (remaining === 0)
           throw new Error('sorry you have exceeded your hourly rate limit!');
       })
-      .catch((err) => toggleError(true, `${err}`));
+      .catch((err) => toggleError(true, getError(err)));
   }, []);
 
   //* Search User
@@ -74,7 +74,7 @@ function GithubProvider({ children }) {
                 setFollowerState([]);
               }
             })
-            .catch((err) => toggleError(true, `${err}`));
+            .catch((err) => toggleError(true, getError(err)));
         } else {
           toggleError(true, 'There is no user with that username');
           setIsLoading(false);
