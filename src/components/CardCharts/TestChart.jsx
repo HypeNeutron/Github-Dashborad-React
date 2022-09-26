@@ -15,6 +15,7 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 //* Adding the chart and theme as dependency to the core fusioncharts
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
+/* eslint-disable */
 export default function ChartComponent({ data }) {
   const chartConfigs = {
     type: 'column2d', //* The chart type
