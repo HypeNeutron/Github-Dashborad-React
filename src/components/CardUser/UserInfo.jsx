@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaTwitter } from 'react-icons/fa';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
-import { GithubContext } from '../../context/context';
+import { GithubContext } from '../../context';
 
 function UserInfo() {
   const { githubUser } = React.useContext(GithubContext);

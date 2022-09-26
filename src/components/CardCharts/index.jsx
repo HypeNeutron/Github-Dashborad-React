@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GithubContext } from '../context/context';
-import {
-  LanguagesUsed,
-  MostPopularStars,
-  MostForked,
-  StarsPerLang,
-} from './Charts';
+import MostPopularStars from './MostPopularStars';
+import MostForked from './MostForked';
+import LanguagesUsed from './LanguagesUsed';
+import StarsPerLang from './StarsPerLang';
+import { GithubContext } from '../../context';
 
 export default function ChartReposData() {
   const { repoState } = React.useContext(GithubContext);
@@ -15,7 +13,6 @@ export default function ChartReposData() {
   const langAndStarCorrected = repoState.reduce((obj, item) => {
     const { language, stargazers_count: starCountLang } = item;
     const insObj = obj;
-
     if (!language) return insObj; // not have language return {} undefined
     // and destruction name if not have add value 1 else add value it
     // countLanguage and stars of lang

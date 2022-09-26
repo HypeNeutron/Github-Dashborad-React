@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
-import { GithubContext } from '../context/context';
+import { GithubContext } from '../context';
 
 function ItemContainer({ icon, label, value, color }) {
   return (

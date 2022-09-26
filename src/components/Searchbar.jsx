@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
-import { GithubContext } from '../context/context';
+import { GithubContext } from '../context';
 
 export default function Searchbar() {
   const [user, setUser] = React.useState('');
@@ -11,11 +11,8 @@ export default function Searchbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user) {
-      searchGithubUser(user);
-      // more logic coming up soon
-      // optional
-    }
+    if (!user) return;
+    searchGithubUser(user);
   };
 
   return (
@@ -26,20 +23,24 @@ export default function Searchbar() {
             <p>{error.msg}</p>
           </ErrorArticle>
         )}
+
         <form onSubmit={handleSubmit}>
           <div className="form-control">
-            <MdSearch />
-            <input
-              type="text"
-              placeholder="enter github user"
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
-            />
+            <div className="searchInput-container">
+              <MdSearch />
+              <input
+                type="text"
+                placeholder="enter github user"
+                value={user}
+                onChange={(e) => setUser(e.target.value)}
+              />
+            </div>
             {requests > 0 && !isLoading && (
               <button type="submit">search</button>
             )}
           </div>
         </form>
+
         <h3>request : {requests} / 60</h3>
       </Wrapper>
     </section>
@@ -59,25 +60,31 @@ const Wrapper = styled.div`
   }
   .form-control {
     background: var(--clr-white);
-    display: grid;
+    display: flex;
     align-items: center;
-    grid-template-columns: auto 1fr auto;
-    column-gap: 0.5rem;
+    justify-content: space-between;
     border-radius: 5px;
     padding: 0.5rem;
+    .searchInput-container {
+      display: flex;
+      align-items: center;
+      flex: 6;
+    }
     input {
+      width: 90%;
       border-color: transparent;
       outline-color: var(--clr-grey-10);
       letter-spacing: var(--spacing);
       color: var(--clr-grey-3);
       padding: 0.25rem 0.5rem;
-    }
-    input::placeholder {
-      color: var(--clr-grey-3);
-      text-transform: capitalize;
-      letter-spacing: var(--spacing);
+      &::placeholder {
+        color: var(--clr-grey-3);
+        text-transform: capitalize;
+        letter-spacing: var(--spacing);
+      }
     }
     button {
+      flex: 1;
       border-radius: 5px;
       border-color: transparent;
       padding: 0.25rem 0.5rem;
@@ -96,11 +103,13 @@ const Wrapper = styled.div`
     svg {
       color: var(--clr-grey-5);
     }
+
     input,
     button,
     svg {
       font-size: 1.3rem;
     }
+
     @media (max-width: 800px) {
       button,
       input,

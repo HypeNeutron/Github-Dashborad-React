@@ -2,13 +2,13 @@ import React from 'react';
 import {
   Navbar,
   Searchbar,
-  ReposDataInfoContainer,
+  CardSummarizeInfo,
   CardUser,
-  ChartSectionDatas,
+  CardCharts,
 } from '../components';
 
 import loadingImage from '../images/preloader.gif';
-import { GithubContext } from '../context/context';
+import { GithubContext } from '../context';
 
 function Dashboard() {
   const { isLoading } = React.useContext(GithubContext);
@@ -25,9 +25,9 @@ function Dashboard() {
     <main>
       <Navbar />
       <Searchbar />
-      <ReposDataInfoContainer />
+      <CardSummarizeInfo />
       <CardUser />
-      <ChartSectionDatas />
+      <CardCharts />
     </main>
   );
 }
