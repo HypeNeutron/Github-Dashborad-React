@@ -35,7 +35,7 @@ module.exports = {
     'no-console': 'warn',
     'no-unused-vars': 'warn',
     'react/prop-types': 'off',
-    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-props-no-spreading': 'warn',
     'react/jsx-filename-extension': 'warn',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
