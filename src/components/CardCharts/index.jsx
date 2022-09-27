@@ -13,15 +13,16 @@ export default function ChartReposData() {
   const langAndStarCorrected = repoState.reduce((obj, item) => {
     const { language, stargazers_count: starCountLang } = item;
     const insObj = obj;
-    if (!language) return insObj; // not have language return {} undefined
-    // and destruction name if not have add value 1 else add value it
-    // countLanguage and stars of lang
+    if (!language) return insObj;
+    // - not have language return {} value is 'undefined'
+    // - if there's no language on the insObj create initial amount 1
+    // - if exist increase amount and stars of that language
     if (!insObj[language]) {
-      insObj[language] = { label: language, value: 1, stars: starCountLang };
+      insObj[language] = { label: language, amount: 1, stars: starCountLang };
     } else {
       insObj[language] = {
         ...insObj[language],
-        value: insObj[language].value + 1,
+        amount: insObj[language].amount + 1,
         stars: insObj[language].stars + starCountLang,
       };
     }
@@ -30,16 +31,15 @@ export default function ChartReposData() {
 
   // Object.values destructure obj into array [obj,obj]
   const objInArr = Object.values(langAndStarCorrected);
-
   // # collect most used language-------------------------------------
   const allTotalLang = objInArr.reduce((acc, item) => {
     let accum = acc;
-    accum += item.value;
+    accum += item.amount;
     return accum;
   }, 0);
 
   const objCalPercent = objInArr.reduce((acc, item) => {
-    const percentage = (item.value / allTotalLang) * 100;
+    const percentage = (item.amount / allTotalLang) * 100;
     // build obj {name:{}}
     acc[item.label] = { label: item.label, value: percentage };
     return acc;
