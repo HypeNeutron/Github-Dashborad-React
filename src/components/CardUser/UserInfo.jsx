@@ -21,7 +21,7 @@ function UserInfo() {
   return (
     <Article>
       <header>
-        <img src={avatarURL} alt={name} />
+        <img src={avatarURL} alt={name || 'avatar'} />
         <div>
           <h4>{name}</h4>
           {twitUser && <p>@{twitUser}</p>}

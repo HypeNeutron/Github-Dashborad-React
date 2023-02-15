@@ -14,7 +14,7 @@ function UserFollowers() {
             const { avatar_url: img, html_url: htmlURL, login } = follower;
             return (
               <article key={follower.id} className="follower">
-                <img src={img} alt={login} />
+                <img src={img} alt={login || 'follower'} />
                 <div>
                   <h4>{login}</h4>
                   <a href={htmlURL} target="_blank" rel="noopener noreferrer">

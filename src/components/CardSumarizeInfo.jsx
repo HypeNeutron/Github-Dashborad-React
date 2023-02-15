@@ -50,7 +50,7 @@ export default function ReposIconInfo() {
         {dataSummarize.map((item) => {
           const { icon, label, value, color } = item;
           return (
-            <figure className="item">
+            <figure className="item" key={item.id}>
               <span className={color}>{icon}</span>
               <div>
                 <h3>{value}</h3>

@@ -37,7 +37,7 @@ export default function Navbar() {
   return (
     <Nav>
       {isUser && user.picture && (
-        <img src={getPicture()} alt={getNameProfile} />
+        <img src={getPicture()} alt={getNameProfile()} />
       )}
 
       {isUser && user.name && (
